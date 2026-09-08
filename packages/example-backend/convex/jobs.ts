@@ -31,7 +31,11 @@ export const start = mutation({
         q.eq("owner", user).eq("requestId", args.requestId),
       )
       .unique();
-    if (prior) return prior._id;
+    if (prior) {
+      if (prior.requestedOutcome !== args.outcome)
+        throw new Error("REQUEST_ID_CONFLICT");
+      return prior._id;
+    }
     await credits.grant(ctx, {
       owner: user,
       amount: 20,
@@ -49,6 +53,7 @@ export const start = mutation({
     const jobId = await ctx.db.insert("jobs", {
       owner: user,
       requestId: args.requestId,
+      requestedOutcome: args.outcome,
       chargeId: reserved.chargeId,
       status: "pending",
     });

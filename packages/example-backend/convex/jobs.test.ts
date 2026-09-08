@@ -32,6 +32,9 @@ test("host authenticates users and completes scheduled work with one debit", asy
         outcome: "success",
       }),
     ).toBe(job);
+    await expect(
+      user.mutation(api.jobs.start, { requestId: "job", outcome: "failure" }),
+    ).rejects.toThrow("REQUEST_ID_CONFLICT");
     await t.finishAllScheduledFunctions(() => vi.runAllTimers());
     expect(await user.query(api.jobs.balance, {})).toBe(10);
     expect(await t.run((ctx) => ctx.db.get(job))).toMatchObject({

@@ -37,7 +37,11 @@
       "dependsOn": [
         "build"
       ],
-      "outputs": []
+      "outputs": [],
+      "cache": false,
+      "env": [
+        "CREDITS_TEST_CONVEX_VERSION"
+      ]
     }
   }
 }

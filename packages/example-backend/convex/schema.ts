@@ -4,6 +4,7 @@ export default defineSchema({
   jobs: defineTable({
     owner: v.string(),
     requestId: v.string(),
+    requestedOutcome: v.union(v.literal("success"), v.literal("failure")),
     chargeId: v.string(),
     status: v.union(
       v.literal("pending"),

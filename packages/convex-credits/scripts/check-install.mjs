@@ -10,6 +10,7 @@ import {
 import { tmpdir } from "node:os";
 import { join, resolve } from "node:path";
 
+const convexVersion = process.env.CREDITS_TEST_CONVEX_VERSION ?? "1.42.1";
 const temporary = mkdtempSync(join(tmpdir(), "convex-credits-install-"));
 function run(command, args, cwd = temporary) {
   return execFileSync(command, args, {
@@ -34,7 +35,7 @@ try {
       type: "module",
       dependencies: {
         "@clipin/convex-credits": `file:./${pack.filename}`,
-        convex: "1.42.1",
+        convex: convexVersion,
       },
       devDependencies: {
         "convex-test": "0.0.54",
@@ -67,6 +68,12 @@ try {
     ),
   );
   run("bun", ["install"]);
+  assert.equal(
+    JSON.parse(
+      readFileSync(join(temporary, "node_modules/convex/package.json"), "utf8"),
+    ).version,
+    convexVersion,
+  );
   const imports = run("node", [
     "--input-type=module",
     "-e",
@@ -83,7 +90,7 @@ try {
   const tests = run("bunx", ["--no-install", "vitest", "run"]);
   assert.match(tests, /2 passed/);
   console.log(
-    "Installed tarball passed: runtime exports, host types, packaged test helper, scheduled completion, and host rollback.",
+    `Installed tarball passed with Convex ${convexVersion}: runtime exports, host types, packaged test helper, scheduled completion, and host rollback.`,
   );
 } catch (error) {
   if (error.stdout) process.stderr.write(error.stdout);

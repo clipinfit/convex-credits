@@ -61,3 +61,8 @@ GitHub authentication is available. npm whoami returned E401; renew npm authenti
 - Docs deployed and browser-verified: https://convex-credits.vercel.app.
 - Private Estulio snapshot rehearsal passed for every existing account, including history, explicit opening balances, retries, and final ledger sums. Source data remains outside this repository.
 - npm web login requested; waiting for account authentication before stable publication.
+
+2026-09-08 follow-up verification:
+- Installed consumer checks pass on Convex 1.42.1 and 1.45.0. CI now checks both versions.
+- The example rejects changed outcomes that reuse a request ID.
+- Package-install checks bypass Turbo caching because they read the example package and resolve registry dependencies.

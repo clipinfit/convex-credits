@@ -3,12 +3,12 @@ title: Release status
 description: Current verification and remaining work.
 ---
 
-Current version: `0.1.0-alpha.0`, under development. No stable release has been published.
+Current stable version: [`1.0.0`](https://www.npmjs.com/package/@clipin/convex-credits), published on September 8, 2026.
 
 The component and example pass 18 tests. Coverage includes repeated requests, key conflicts, release, partial refunds, transfers, invalid amounts, namespace isolation, account imports, and host transaction rollback. Generated operation sequences check balances against the ledger sum.
 
 A real local Convex deployment also passes concurrent duplicate grants, competing reservations, a completion/release race, and ledger reconciliation. The website has been inspected at desktop and mobile sizes.
 
-Stable release work includes installed-package verification, CI, an Estulio migration rehearsal, and release documentation. Production migration follows stable publication.
+Installed-package verification and CI pass with Convex 1.42.1 and 1.45.0. A private production-data import rehearsal passed. The first production integration and directory submission are in progress.
 
 Source: [clipinfit/convex-credits](https://github.com/clipinfit/convex-credits).

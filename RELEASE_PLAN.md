@@ -66,3 +66,5 @@ GitHub authentication is available. npm whoami returned E401; renew npm authenti
 - Installed consumer checks pass on Convex 1.42.1 and 1.45.0. CI now checks both versions.
 - The example rejects changed outcomes that reuse a request ID.
 - Package-install checks bypass Turbo caching because they read the example package and resolve registry dependencies.
+
+2026-09-08: Published @clipin/convex-credits@1.0.0 with npm user denis. Verified public access, tarball availability, and registry version. Estulio installation now uses the exact published version.

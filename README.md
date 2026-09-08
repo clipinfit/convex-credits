@@ -2,7 +2,7 @@
 
 Credit balances and charges for background jobs, maintained by CLIPIN.
 
-This repository is under development. No stable release has been published.
+Stable package: [`@clipin/convex-credits@1.0.0`](https://www.npmjs.com/package/@clipin/convex-credits).
 
 - `packages/convex-credits`: the reusable Convex component.
 - `packages/example-backend`: a host app that exercises the public API.

@@ -1,0 +1,12 @@
+node_modules/
+dist/
+.next/
+.source/
+.turbo/
+.env*
+!.env.example
+*.tsbuildinfo
+*.tgz
+.vercel/
+coverage/
+.convex/

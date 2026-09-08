@@ -1,0 +1,28 @@
+---
+title: Getting started
+description: Install and mount the component.
+---
+
+The stable package has not been published yet. For local development, clone the repository and run `bun install` followed by `bun run build`.
+
+The component package exports `Credits` and its Convex configuration.
+
+```ts
+import { defineApp } from "convex/server";
+import credits from "@clipin/convex-credits/convex.config.js";
+const app = defineApp();
+app.use(credits);
+export default app;
+```
+
+After Convex code generation, create the client in your host app.
+
+```ts
+import { Credits } from "@clipin/convex-credits";
+import { components } from "./_generated/api";
+export const credits = new Credits(components.credits, "production");
+```
+
+The namespace separates accounts and operation keys. Use a namespace controlled by your server.
+
+Call mutations from a host mutation when you need job changes and credit changes to commit together. Never take a client-supplied price or account owner as authorization.

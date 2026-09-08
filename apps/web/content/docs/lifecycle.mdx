@@ -1,0 +1,26 @@
+---
+title: Charge lifecycle
+description: One charge, explicit outcomes.
+---
+
+## Reserve
+
+`reserve` deducts available credits and creates a pending charge. The movement is negative. Other jobs cannot spend those credits.
+
+## Complete
+
+`complete` changes a pending charge to completed. It creates no credit movement. Repeating completion is safe. Completing a released charge fails with `CHARGE_RELEASED`.
+
+## Release
+
+`release` returns all credits from a pending charge. It creates one positive movement linked to the charge. Repeating release cannot refund twice. Releasing a completed charge fails with `CHARGE_COMPLETED`.
+
+## Refund
+
+`refund` returns credits after completion. It accepts an amount and a reason. Partial refunds are supported. Total refunds cannot exceed the original charge.
+
+## Balances and history
+
+Available balance is the amount another job may reserve. History shows actual signed changes. Charge state records whether work is pending, completed, or released. These are separate concepts.
+
+The component does not call your AI provider. Your workflow must decide when success or failure is final. Do not release a charge merely because a request timed out while its job may still complete.

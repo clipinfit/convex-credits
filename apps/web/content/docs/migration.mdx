@@ -1,0 +1,77 @@
+---
+title: Migration
+description: Import history and pending charges without a second debit.
+---
+
+The import API works on one account at a time. The host must stop credit writes for that account while it takes a source snapshot and imports it. Normal component mutations and the balance query reject an importing account.
+
+## Prepare the source
+
+Inventory every writer: purchases, bonuses, admin changes, transfers, reservations, releases, refunds, and immediate charges. Switch all writers for an account together.
+
+Read the account's available balance and its ledger in chronological order. Count the nonzero movements and the reservations that are still pending. Exclude zero-value completion events from the movement count. Preserve their job status in the host records.
+
+Check every source `balanceAfter` against the running sum. Investigate gaps before starting an import. If the source starts with a known prior balance, supply that value as `openingBalance`. It creates an explicit opening movement. Do not invent an opening amount to hide an unexplained difference.
+
+## Start the import
+
+```ts
+await credits.beginImport(ctx, {
+  owner: userId,
+  key: `migration:${userId}:begin`,
+  openingBalance: 0,
+  expectedBalance: 12,
+  expectedMovements: 2,
+  expectedPendingCharges: 1,
+  occurredAt: 0,
+  reference: "legacy-snapshot-2026-09-08",
+});
+```
+
+The account must not exist. Expected counts and balance are fixed for this import. Validate the snapshot before starting. `getAccount` exposes the import progress without enabling normal balance reads.
+
+## Import movements in order
+
+```ts
+await credits.importMovement(ctx, {
+  owner: userId,
+  key: "legacy:transaction-1",
+  delta: 20,
+  balanceAfter: 20,
+  occurredAt: originalGrantTimestamp,
+  reason: "welcome",
+  reference: "transaction-1",
+  pendingCharge: false,
+});
+const pending = await credits.importMovement(ctx, {
+  owner: userId,
+  key: "legacy:transaction-2",
+  delta: -8,
+  balanceAfter: 12,
+  occurredAt: originalReservationTimestamp,
+  reason: "infographic",
+  reference: "transaction-2",
+  pendingCharge: true,
+});
+```
+
+Use the source record ID as the operation key. Identical retries return the same result. Store the host checkpoint and any returned `chargeId` in the same host mutation as the import call. An interrupted import can then resume without a second movement.
+
+A pending charge must accompany its original negative movement. Importing it creates charge state and debits the historical running balance once. After activation, `complete` adds no movement; `release` returns that amount once.
+
+Completed and reversed source transactions remain historical movements. They do not become new refundable charges. Keep source records for audit and handle any legacy refund through a verified host policy.
+
+Every row must preserve its timestamp and reference. Timestamps must be nonnegative integer milliseconds, no later than the current time, and in ascending order. Equal timestamps are allowed. The supplied `balanceAfter` must match the running balance after that movement.
+
+## Reconcile and activate
+
+```ts
+await credits.finishImport(ctx, {
+  owner: userId,
+  key: `migration:${userId}:finish`,
+});
+```
+
+Activation checks the movement count, pending-charge count, and final available balance. It fails if any value differs from the snapshot. Set the host's account routing flag in that same mutation. This makes the component activation and host cutover atomic.
+
+Keep all source records. Do not restart legacy writers after cutover without a separate reconciliation plan. This package does not automatically migrate a host schema, resolve inaccurate source history, or retry external provider work.

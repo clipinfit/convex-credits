@@ -1,0 +1,6 @@
+{
+  "$schema": "https://biomejs.dev/schemas/2.5.1/schema.json",
+  "files": { "includes": ["**", "!**/_generated/**", "!**/.next/**", "!**/.source/**", "!**/dist/**", "!**/node_modules/**"] },
+  "formatter": { "indentStyle": "space" },
+  "css": { "parser": { "tailwindDirectives": true } }
+}

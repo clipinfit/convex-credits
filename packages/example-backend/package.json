@@ -1,0 +1,25 @@
+{
+  "name": "@convex-credits/example-backend",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "CONVEX_AGENT_MODE=anonymous convex dev",
+    "codegen": "convex codegen --component-dir ../convex-credits/src/component",
+    "typecheck": "tsc -p convex/tsconfig.json --noEmit",
+    "test": "vitest run",
+    "test:local": "node scripts/test-local.mjs",
+    "lint": "biome check convex scripts",
+    "format": "biome format --write convex scripts"
+  },
+  "dependencies": {
+    "convex": "1.42.1",
+    "@clipin/convex-credits": "workspace:*"
+  },
+  "devDependencies": {
+    "@edge-runtime/vm": "5.0.0",
+    "convex-test": "0.0.54",
+    "typescript": "5.9.3",
+    "vite": "8.2.1",
+    "vitest": "4.1.10"
+  }
+}

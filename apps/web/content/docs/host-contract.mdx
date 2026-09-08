@@ -1,0 +1,14 @@
+---
+title: Host contract
+description: Authorization and transaction boundaries.
+---
+
+The component trusts the host app. The host must authenticate users, authorize account access, calculate prices, and verify payment receipts before granting credits.
+
+Derive account owners from the authenticated identity. Scope shared accounts through membership checks in the host.
+
+A host mutation can update its own tables and call a component mutation in the same transaction. If the host mutation fails, component writes also roll back. Separate calls from an action are separate transactions.
+
+The component controls database credit effects. It does not make external provider requests exactly once. Use provider idempotency support and durable job state where available.
+
+Credits are integer application units. The package does not implement currency conversion, tax, invoicing, or payment processing.

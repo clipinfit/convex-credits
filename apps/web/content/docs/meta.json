@@ -1,0 +1,13 @@
+{
+  "title": "Convex Credits",
+  "pages": [
+    "index",
+    "getting-started",
+    "lifecycle",
+    "api",
+    "host-contract",
+    "retries",
+    "migration",
+    "release-status"
+  ]
+}

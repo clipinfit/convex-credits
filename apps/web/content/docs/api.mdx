@@ -1,0 +1,67 @@
+---
+title: API reference
+description: The host client API.
+---
+
+All methods take a Convex context and an argument object. The client supplies its configured namespace.
+
+| Method | Arguments | Result |
+| --- | --- | --- |
+| `grant` | owner, amount, key, reason, reference | movementId, balance |
+| `reserve` | owner, amount, key, reason, reference | chargeId, balance |
+| `complete` | chargeId, key | chargeId |
+| `release` | chargeId, key | chargeId, balance |
+| `refund` | chargeId, key, amount, reason | movementId, balance |
+| `transfer` | from, to, amount, key, reason, reference | debitId, creditId, fromBalance, toBalance |
+| `balance` | owner | number |
+| `getCharge` | chargeId | charge or null |
+| `history` | owner, paginationOpts | Convex pagination result |
+
+Mutation results also include a `kind` that identifies the operation. Amounts are positive safe integers. Zero, fractions, negative values, and non-finite values are rejected.
+
+History uses Convex cursor pagination. Pass `{ cursor: null, numItems: 50 }` for the first page. Use the returned `continueCursor` for the next page.
+
+The `balance` returned by an operation is the balance at that operation. A retry returns the original result, even if later operations changed the account. Use `balance` to read the current value.
+
+## Account imports
+
+| Method | Arguments | Result |
+| --- | --- | --- |
+| `getAccount` | owner | account with active/importing state, or null |
+| `beginImport` | owner, key, openingBalance, expectedBalance, expectedMovements, expectedPendingCharges, occurredAt, reference | accountId, balance |
+| `importMovement` | owner, key, delta, balanceAfter, occurredAt, reason, reference, pendingCharge | movementId, balance, optional chargeId |
+| `finishImport` | owner, key | accountId, balance |
+
+See [Migration](/docs/migration) for the required snapshot, ordering, and cutover rules.
+
+History sorts by `occurredAt` in descending order. New movements use the current time. Imported movements preserve the source time. Equal timestamps sort by Convex creation order. Each row includes a signed `delta`, `balanceAfter`, `reason`, `reference`, and operation key. A negative delta is credits spent; it is not the remaining balance.
+
+History uses `paginator` from `convex-helpers`. For React pagination, use `usePaginatedQuery` from `convex-helpers/react`, as described in [Convex component pagination](https://docs.convex.dev/components/authoring#pagination). The built-in React hook does not provide the same page-boundary behavior for components.
+
+## Immediate charges
+
+For work that completes within one host mutation, call `reserve` and then `complete` in that mutation. Use separate stable keys for each call. The host transaction makes both calls atomic, and the ledger contains one debit.
+
+## Errors
+
+Errors use `ConvexError({ code })`.
+
+| Code | Meaning |
+| --- | --- |
+| `INVALID_AMOUNT` | Amount or count is outside its allowed safe-integer range. |
+| `INVALID_IDENTIFIER` | Namespace, operation key, or owner is blank or exceeds 512 characters. |
+| `INSUFFICIENT_CREDITS` | The debit would make the balance negative. |
+| `BALANCE_OVERFLOW` | The credit would exceed the safe-integer limit. |
+| `OPERATION_KEY_CONFLICT` | The key was used for a different request. |
+| `CHARGE_NOT_FOUND` | The charge does not exist in this namespace. |
+| `CHARGE_RELEASED` / `CHARGE_COMPLETED` | The requested transition conflicts with the terminal state. |
+| `CHARGE_NOT_COMPLETED` | A refund requires a completed charge. |
+| `REFUND_EXCEEDS_CHARGE` | The refund exceeds the unrefunded amount. |
+| `SELF_TRANSFER` | Both transfer owners are the same. |
+| `ACCOUNT_EXISTS` / `ACCOUNT_NOT_FOUND` | The import requires a new/existing account respectively. |
+| `ACCOUNT_IMPORTING` / `ACCOUNT_NOT_IMPORTING` | The operation is not valid in the account's current state. |
+| `INVALID_TIMESTAMP` | An import timestamp is invalid or in the future. |
+| `INVALID_IMPORT_COUNTS` | Expected pending charges exceed expected movements. |
+| `INVALID_PENDING_CHARGE` | A pending charge requires a negative source movement. |
+| `IMPORT_OUT_OF_ORDER` | The timestamp precedes the last imported movement. |
+| `IMPORT_BALANCE_MISMATCH` / `IMPORT_COUNT_MISMATCH` | The source snapshot and imported data do not reconcile. |

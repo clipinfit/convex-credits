@@ -1,0 +1,26 @@
+{
+  "name": "convex-credits-workspace",
+  "private": true,
+  "type": "module",
+  "packageManager": "bun@1.4.0",
+  "engines": {
+    "node": ">=22"
+  },
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "build": "turbo run build",
+    "dev": "turbo run dev",
+    "typecheck": "turbo run typecheck",
+    "test": "turbo run test",
+    "lint": "turbo run lint",
+    "format": "turbo run format",
+    "pack:check": "turbo run pack:check"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "2.5.1",
+    "turbo": "2.10.8"
+  }
+}

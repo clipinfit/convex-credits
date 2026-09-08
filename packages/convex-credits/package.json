@@ -1,0 +1,88 @@
+{
+  "name": "@clipin/convex-credits",
+  "version": "0.1.0-alpha.0",
+  "description": "Transactional credits for Convex background jobs: reserve, complete, release, refund, and reconcile.",
+  "license": "Apache-2.0",
+  "homepage": "https://convex-credits.vercel.app",
+  "bugs": {
+    "url": "https://github.com/clipinfit/convex-credits/issues"
+  },
+  "type": "module",
+  "main": "./dist/client/index.js",
+  "types": "./dist/client/index.d.ts",
+  "files": [
+    "dist",
+    "src",
+    "!src/**/*.test.ts",
+    "README.md",
+    "LICENSE",
+    "NOTICE",
+    "CHANGELOG.md"
+  ],
+  "exports": {
+    "./package.json": "./package.json",
+    ".": {
+      "types": "./dist/client/index.d.ts",
+      "default": "./dist/client/index.js"
+    },
+    "./test": "./src/test.ts",
+    "./_generated/component.js": {
+      "types": "./dist/component/_generated/component.d.ts"
+    },
+    "./convex.config": {
+      "types": "./dist/component/convex.config.d.ts",
+      "default": "./dist/component/convex.config.js"
+    },
+    "./convex.config.js": {
+      "types": "./dist/component/convex.config.d.ts",
+      "default": "./dist/component/convex.config.js"
+    }
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "dev": "tsc -p tsconfig.build.json --watch",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "lint": "biome check src scripts",
+    "format": "biome format --write src scripts",
+    "prepack": "npm run build",
+    "pack:check": "node scripts/check-package.mjs && node scripts/check-install.mjs"
+  },
+  "peerDependencies": {
+    "convex": ">=1.42.1 <2.0.0"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "2.5.1",
+    "@edge-runtime/vm": "5.0.0",
+    "@types/node": "^22.0.0",
+    "convex": "1.42.1",
+    "convex-test": "0.0.54",
+    "typescript": "5.9.3",
+    "vite": "8.2.1",
+    "vitest": "4.1.10"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/clipinfit/convex-credits.git",
+    "directory": "packages/convex-credits"
+  },
+  "keywords": [
+    "convex",
+    "convex-component",
+    "credits",
+    "ledger",
+    "billing",
+    "ai",
+    "reservations"
+  ],
+  "author": "Denis Ciccale",
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "convex-helpers": "0.1.120"
+  }
+}

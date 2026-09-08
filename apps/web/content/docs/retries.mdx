@@ -1,0 +1,26 @@
+---
+title: Retries and errors
+description: Stable operation keys prevent duplicate effects.
+---
+
+Every mutation requires an operation key. Keys are unique within a namespace across operation types and account owners.
+
+Use a stable key for one logical operation, such as `receipt:123` or `job:456:complete`. Repeated identical arguments return the original result. Changed arguments with the same key fail with `OPERATION_KEY_CONFLICT`.
+
+A failed mutation rolls back its operation key too. Correct the failure and retry. Do not recycle successful keys. The component does not automatically expire keys or delete ledger history.
+
+| Code | Meaning |
+| --- | --- |
+| INVALID_AMOUNT | Amount is not a positive safe integer. |
+| INVALID_IDENTIFIER | Namespace, owner, or key is empty or too long. |
+| INSUFFICIENT_CREDITS | The account cannot cover the debit. |
+| BALANCE_OVERFLOW | The result exceeds the safe-integer range. |
+| OPERATION_KEY_CONFLICT | This key already identifies a different request. |
+| CHARGE_NOT_FOUND | The charge does not exist in this namespace. |
+| CHARGE_RELEASED | A released charge cannot complete. |
+| CHARGE_COMPLETED | A completed charge cannot release. Use refund. |
+| CHARGE_NOT_COMPLETED | Refund requires a completed charge. |
+| REFUND_EXCEEDS_CHARGE | Refund exceeds the unrefunded amount. |
+| SELF_TRANSFER | Transfer source and destination are the same. |
+
+Errors use `ConvexError` with a `code` field in its data.

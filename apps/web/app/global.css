@@ -1,0 +1,365 @@
+@import "tailwindcss";
+@import "fumadocs-ui/css/neutral.css";
+@import "fumadocs-ui/css/preset.css";
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+* {
+  box-sizing: border-box;
+}
+:focus-visible {
+  outline: 2px solid #9cedcf;
+  outline-offset: 5px;
+}
+.landing {
+  background: #101c1a;
+  color: #f2f1e9;
+  min-height: 100vh;
+}
+.masthead,
+footer {
+  max-width: 1280px;
+  margin: auto;
+  padding: 30px 48px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #33433f;
+}
+.wordmark {
+  font-size: 21px;
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  font-weight: 700;
+  letter-spacing: -0.6px;
+}
+.wordmark:first-letter {
+  color: #9cedcf;
+}
+nav {
+  display: flex;
+  gap: 30px;
+  font-size: 14px;
+  color: #c2ccc7;
+}
+.hero {
+  max-width: 1280px;
+  margin: auto;
+  padding: 90px 48px 100px;
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 80px;
+  align-items: center;
+}
+.release {
+  display: inline-flex;
+  gap: 10px;
+  align-items: center;
+  border: 1px solid #3f554e;
+  border-radius: 30px;
+  padding: 8px 12px;
+  font-size: 11px;
+  color: #bad0c8;
+}
+.dot {
+  height: 6px;
+  width: 6px;
+  background: #9cedcf;
+  border-radius: 50%;
+}
+.eyebrow {
+  font-size: 10px;
+  letter-spacing: 2px;
+  color: #9cedcf;
+  margin: 40px 0 22px;
+}
+h1 {
+  font-size: clamp(48px, 5.4vw, 78px);
+  line-height: 1.05;
+  letter-spacing: -4px;
+  font-weight: 500;
+}
+h1 em {
+  font-family: Georgia, serif;
+  font-weight: 400;
+  color: #9cedcf;
+}
+.intro {
+  font-size: 17px;
+  line-height: 1.7;
+  max-width: 420px;
+  color: #b9c8c1;
+  margin: 28px 0;
+}
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  margin: 30px 0 22px;
+  font-size: 13px;
+}
+.primary {
+  background: #b6f1d5;
+  color: #10261c;
+  border-radius: 5px;
+  padding: 15px 20px;
+  font-weight: 600;
+  display: flex;
+  gap: 36px;
+}
+.secondary {
+  color: #d0d8d0;
+}
+.small {
+  font-size: 10px;
+  color: #91a99e;
+  letter-spacing: 0.4px;
+}
+.demo {
+  background: #f2f1e9;
+  color: #243930;
+  border-radius: 12px;
+  padding: 27px;
+  box-shadow: 0 20px 80px #0003;
+  transform: rotate(1deg);
+}
+.demo-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 9px;
+  letter-spacing: 1.3px;
+  color: #5d7067;
+}
+.tag {
+  font-size: 8px;
+  border: 1px solid #bdc8bd;
+  padding: 4px 6px;
+  border-radius: 4px;
+  letter-spacing: 0.5px;
+}
+.balance {
+  padding: 26px 0;
+}
+.balance > span {
+  font-size: 12px;
+  color: #697c71;
+}
+.balance strong {
+  display: block;
+  font-size: 60px;
+  font-weight: 500;
+  letter-spacing: -3px;
+  line-height: 1.4;
+}
+.balance small {
+  font-size: 18px;
+  font-weight: 400;
+  color: #7a8b81;
+  letter-spacing: 0;
+}
+.balance-track {
+  height: 5px;
+  background: #d5dfd5;
+  border-radius: 5px;
+  overflow: hidden;
+}
+.balance-track > div {
+  background: #3b8067;
+  height: 100%;
+  transition: width 0.2s;
+}
+.ledger {
+  min-height: 132px;
+}
+.ledger-heading,
+.ledger-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #d7ddd3;
+  padding: 13px 0;
+  font-size: 11px;
+}
+.ledger-heading {
+  font-size: 9px;
+  color: #7d8b82;
+}
+.ledger-row b {
+  font-family: monospace;
+  font-size: 13px;
+}
+.ledger-row small {
+  display: block;
+  color: #758d7e;
+  font-size: 9px;
+  margin-top: 4px;
+}
+.positive {
+  color: #367a5f;
+}
+.demo-actions {
+  display: flex;
+  gap: 9px;
+  margin-top: 22px;
+}
+.demo-actions button {
+  background: #203f32;
+  color: #fff;
+  border: 0;
+  border-radius: 5px;
+  font-size: 11px;
+  padding: 12px 14px;
+  cursor: pointer;
+}
+.demo-actions button.quiet {
+  background: #dbe5da;
+  color: #244633;
+}
+.demo-note {
+  font-size: 11px;
+  line-height: 1.5;
+  min-height: 34px;
+  margin-top: 16px;
+  color: #566d60;
+}
+.simulation-note {
+  font-size: 9px;
+  color: #85938a;
+  margin: 8px 0 0;
+}
+.principles {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 45px;
+  padding: 48px;
+  max-width: 1280px;
+  margin: auto;
+  border-top: 1px solid #33433f;
+  border-bottom: 1px solid #33433f;
+}
+.principles article > span {
+  font-family: monospace;
+  font-size: 10px;
+  letter-spacing: 1px;
+  color: #89b5a4;
+}
+.principles h2 {
+  font-size: 19px;
+  font-weight: 500;
+  margin: 22px 0 14px;
+  letter-spacing: -0.5px;
+}
+.principles p,
+.integration p {
+  font-size: 13px;
+  line-height: 1.8;
+  color: #a6bdb0;
+}
+.integration {
+  max-width: 1280px;
+  margin: auto;
+  padding: 80px 48px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+}
+.integration .eyebrow {
+  margin-top: 0;
+}
+.integration h2 {
+  font-size: 40px;
+  line-height: 1.15;
+  letter-spacing: -1.7px;
+  margin-bottom: 18px;
+}
+.integration p {
+  max-width: 340px;
+  margin-bottom: 18px;
+}
+.integration a {
+  font-size: 13px;
+  color: #9cedcf;
+}
+.integration pre {
+  font-size: 12px;
+  line-height: 1.8;
+  background: #152823;
+  padding: 30px;
+  border: 1px solid #33433f;
+  border-radius: 9px;
+  overflow: auto;
+  color: #c9e4d4;
+}
+footer {
+  border-bottom: 0;
+  border-top: 1px solid #33433f;
+  color: #98b1a3;
+  font-size: 11px;
+  gap: 20px;
+}
+.landing a:hover {
+  opacity: 0.8;
+}
+@media (max-width: 850px) {
+  .hero {
+    gap: 38px;
+    padding-top: 55px;
+    padding-bottom: 55px;
+  }
+  h1 {
+    font-size: 55px;
+    letter-spacing: -2.8px;
+  }
+  .hero,
+  .integration {
+    grid-template-columns: 1fr;
+  }
+  .demo {
+    transform: none;
+  }
+  .principles {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+  .masthead,
+  .hero,
+  .principles,
+  .integration,
+  footer {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+  .masthead nav {
+    gap: 16px;
+    font-size: 12px;
+  }
+  .wordmark {
+    font-size: 17px;
+  }
+  .integration {
+    gap: 28px;
+    padding-top: 45px;
+    padding-bottom: 45px;
+  }
+  footer {
+    flex-wrap: wrap;
+  }
+  .eyebrow {
+    margin-top: 26px;
+  }
+  .hero > div:first-child {
+    max-width: 550px;
+  }
+  .demo {
+    max-width: 550px;
+    width: 100%;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .balance-track > div {
+    transition: none;
+  }
+}

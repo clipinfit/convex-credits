@@ -1,7 +1,9 @@
 # Convex directory submission
 
-Status: prepared, not submitted. Stable npm version 1.0.1 is published. Production migration and deployment are verified. Convex preflight passed all eight critical and six suggested checks. The authenticated form is complete except for contact information.
+Status: submitted on 2026-09-08 and confirmed **In Review** in the Convex directory profile. Stable npm version 1.0.1 is published. Production migration and deployment are verified. Convex preflight passed all eight critical and six suggested checks.
 
+- Submission status: https://www.convex.dev/components/profile
+- Assigned directory URL (available after approval): https://www.convex.dev/components/clipin/convex-credits
 - Name: Convex Credits
 - Maintainer: CLIPIN
 - npm package: `@clipin/convex-credits`

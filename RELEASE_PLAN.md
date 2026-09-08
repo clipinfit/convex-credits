@@ -48,9 +48,9 @@ Verified on 2026-09-08:
 - Published stable `@clipin/convex-credits@1.0.1` from the public repository.
 - Component lifecycle, generated operation sequences, resumable imports, scheduled jobs, and host rollback tests pass.
 - Real local Convex checks cover simultaneous grants, competing reservations, retries, completion/release races, and ledger reconciliation.
-- Installed tarball checks pass locally with Convex 1.42.1 and 1.45.0, including a nested npm workspace. CI uses npm 11.14.1 to avoid an installer crash in the Node 22 bundled version.
+- Installed tarball checks pass locally with Convex 1.42.1 and 1.45.0, including a nested npm workspace. CI also passes with npm 11.14.1, avoiding an installer crash in the Node 22 bundled version.
 - Type checks, lint, package contents, and website builds pass. The live website shows version 1.0.1.
 - Estulio production uses the published package. All production accounts migrated with source history preserved and no balance drift. Backend and frontend deployments passed.
 - The development migration correctly rejected an account with pre-existing inconsistent history. No synthetic corrections were applied.
 - Production snapshots and detailed reconciliation evidence remain outside this public repository.
-- Convex directory preflight passed all eight critical and six suggested checks. Submission is prepared; contact information is pending.
+- Convex directory preflight passed all eight critical and six suggested checks. Submitted successfully; the directory profile confirms In Review.

@@ -68,3 +68,5 @@ GitHub authentication is available. npm whoami returned E401; renew npm authenti
 - Package-install checks bypass Turbo caching because they read the example package and resolve registry dependencies.
 
 2026-09-08: Published @clipin/convex-credits@1.0.0 with npm user denis. Verified public access, tarball availability, and registry version. Estulio installation now uses the exact published version.
+
+2026-09-08: Published and verified 1.0.1. Removed the test helper type dependency on convex-test and added an installed npm workspace regression check. Both Convex 1.42.1 and 1.45.0 pass. Estulio now installs exact registry version 1.0.1; backend/app type checks, the app production build, and 18 integration tests pass. Production reconciliation remains 318 users / 14,235 credits with no pending charges or active study generations. Development migration verified one account and correctly rejected a pre-existing inconsistent history on another account; production histories all reconcile. Production deployment and directory submission remain in progress.

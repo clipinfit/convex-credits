@@ -18,7 +18,7 @@ export default function Home() {
         <section className="hero">
           <div>
             <Link className="release" href="/docs/release-status">
-              <span className="dot" /> Stable · 1.0.0
+              <span className="dot" /> Stable · 1.0.1
             </Link>
             <p className="eyebrow">A CONVEX COMPONENT BY CLIPIN</p>
             <h1>

@@ -1,6 +1,6 @@
 # Convex directory submission
 
-Status: prepared, not submitted. Publish the stable npm package and complete the Estulio production migration first.
+Status: prepared, not submitted. Stable npm version 1.0.1 is published. Complete the Estulio production migration first.
 
 - Name: Convex Credits
 - Maintainer: CLIPIN

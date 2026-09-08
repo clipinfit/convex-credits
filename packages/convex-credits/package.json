@@ -1,6 +1,6 @@
 {
   "name": "@clipin/convex-credits",
-  "version": "0.1.0-alpha.0",
+  "version": "1.0.0",
   "description": "Transactional credits for Convex background jobs: reserve, complete, release, refund, and reconcile.",
   "license": "Apache-2.0",
   "homepage": "https://convex-credits.vercel.app",

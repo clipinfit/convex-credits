@@ -4,7 +4,7 @@ A Convex component for credit balances and background-job charges, maintained by
 
 Reserve credits before work starts. Complete after success. Release after failure. Refund completed work when needed. The component stores one debit per job and keeps completion state separate from credit movements.
 
-This package is in development. No stable version has been published.
+Install with `npm install @clipin/convex-credits convex`. Version 1.0 provides the account, charge, and import APIs documented below.
 
 ## Integration
 

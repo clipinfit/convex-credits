@@ -2,6 +2,18 @@ import { RootProvider } from "fumadocs-ui/provider/next";
 import type { Metadata } from "next";
 import "./global.css";
 export const metadata: Metadata = {
+  metadataBase: new URL("https://convex-credits.vercel.app"),
+  openGraph: {
+    images: [
+      {
+        url: "/directory-thumbnail.png",
+        width: 1536,
+        height: 864,
+        alt: "Convex Credits: one debit for a completed job",
+      },
+    ],
+  },
+  twitter: { card: "summary_large_image" },
   title: {
     default: "Convex Credits · Every charge accounted for",
     template: "%s · Convex Credits",

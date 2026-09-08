@@ -24,7 +24,7 @@ const credits = new Credits(components.credits);
 const charge = await credits.reserve(ctx, {
   owner: authenticatedAccountId,
   amount: 10,
-  key: requestId,
+  key: JSON.stringify([authenticatedAccountId, "reserve", requestId]),
   reason: "Image generation",
   reference: jobId,
 });
@@ -32,7 +32,7 @@ const charge = await credits.reserve(ctx, {
 // In a later mutation, after the job succeeds:
 await credits.complete(ctx, {
   chargeId: charge.chargeId,
-  key: requestId + ":complete",
+  key: JSON.stringify([charge.chargeId, "complete"]),
 });
 ```
 

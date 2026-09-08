@@ -54,3 +54,10 @@ GitHub authentication is available. npm whoami returned E401; renew npm authenti
 - All workspace types, lint, tests, builds, package contents, and installed-tarball host tests pass.
 - Website checked at desktop and mobile sizes.
 - GitHub and Vercel authentication available. npm package name is not currently published.
+
+2026-09-08 publication preparation:
+- Public repo created: https://github.com/clipinfit/convex-credits (initial commit 7a272cf).
+- GitHub CI passed: run 34234538145.
+- Docs deployed and browser-verified: https://convex-credits.vercel.app.
+- Private Estulio snapshot rehearsal passed for every existing account, including history, explicit opening balances, retries, and final ledger sums. Source data remains outside this repository.
+- npm web login requested; waiting for account authentication before stable publication.

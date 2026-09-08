@@ -34,3 +34,5 @@ The website demo runs in the browser and simulates the lifecycle. The example ba
 ## License
 
 Apache-2.0. Copyright 2026 Denis Ciccale. Maintained by CLIPIN.
+
+To rehearse a source import, set `CREDITS_IMPORT_SNAPSHOT` to a private JSON snapshot and run `bunx vitest run scripts/rehearse-import.test.ts` in `packages/convex-credits`. The snapshot stays outside the repository. See the validator in that script for its format.

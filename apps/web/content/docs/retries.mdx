@@ -7,6 +7,8 @@ Every mutation requires an operation key. Keys are unique within a namespace acr
 
 Use a stable key for one logical operation, such as `receipt:123` or `job:456:complete`. Repeated identical arguments return the original result. Changed arguments with the same key fail with `OPERATION_KEY_CONFLICT`.
 
+When a request ID comes from a user, include the authenticated owner and operation type in the key: `JSON.stringify([owner, "reserve", requestId])`. Do not let two owners share a client-chosen key accidentally.
+
 A failed mutation rolls back its operation key too. Correct the failure and retry. Do not recycle successful keys. The component does not automatically expire keys or delete ledger history.
 
 | Code | Meaning |

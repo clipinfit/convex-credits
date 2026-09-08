@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1536" height="864" viewBox="0 0 1536 864">
+  <rect width="1536" height="864" fill="#0b201b"/>
+  <path d="M76 94h1384M76 770h1384" stroke="#315048"/>
+  <g font-family="Arial, Helvetica, sans-serif">
+    <text x="76" y="62" fill="#a4dfb6" font-size="22" letter-spacing="4">A CONVEX COMPONENT BY CLIPIN</text>
+    <text x="76" y="272" fill="#f5f0df" font-size="91" font-weight="700" letter-spacing="-4">Convex</text>
+    <text x="76" y="372" fill="#b7eac5" font-size="91" font-weight="700" letter-spacing="-4">Credits.</text>
+    <text x="80" y="452" fill="#f5f0df" font-size="31">Every charge. Accounted for.</text>
+    <text x="80" y="540" fill="#a6b8af" font-size="25">Reserve before work starts.</text>
+    <text x="80" y="578" fill="#a6b8af" font-size="25">Complete or return credits.</text>
+    <rect x="80" y="637" width="431" height="49" rx="24" fill="#15382d"/>
+    <text x="104" y="669" fill="#b7eac5" font-size="20">Open source  ·  Apache-2.0  ·  Convex</text>
+    <rect x="789" y="165" width="665" height="522" rx="27" fill="#f2eedf"/>
+    <text x="829" y="223" fill="#516458" font-size="18" letter-spacing="2">AVAILABLE CREDITS</text>
+    <text x="825" y="336" fill="#102b20" font-size="102" font-weight="700">10</text>
+    <text x="952" y="333" fill="#516458" font-size="31">cr</text>
+    <rect x="1265" y="197" width="153" height="34" rx="17" fill="#cfdfcb"/>
+    <text x="1284" y="221" fill="#254e30" font-size="18">Completed</text>
+    <path d="M829 379h585M829 444h585M829 524h585" stroke="#c8cebd"/>
+    <text x="829" y="419" fill="#617060" font-size="19">MOVEMENT</text>
+    <text x="1412" y="419" fill="#617060" font-size="19" text-anchor="end">CREDITS</text>
+    <text x="829" y="495" fill="#173426" font-size="25">Welcome credits</text>
+    <text x="1412" y="495" fill="#2c7844" font-size="28" text-anchor="end">+20</text>
+    <text x="829" y="576" fill="#173426" font-size="25">Image generation</text>
+    <text x="1412" y="576" fill="#173426" font-size="28" text-anchor="end">−10</text>
+    <text x="829" y="642" fill="#617060" font-size="19">One debit. Completion changes state.</text>
+    <text x="80" y="819" fill="#9cb2a6" font-size="20">convex-credits.vercel.app</text>
+    <text x="1456" y="819" fill="#b7eac5" font-size="20" text-anchor="end">@clipin/convex-credits</text>
+  </g>
+</svg>

@@ -15,6 +15,9 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
+      # npm bundled with Node 22 crashes on the nested workspace fixture.
+      # Use the same version as the verified local consumer checks.
+      - run: npm install --global npm@11.14.1
       - run: bun install --frozen-lockfile
       - run: bun run typecheck
       - run: bun run lint

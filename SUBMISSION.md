@@ -1,6 +1,6 @@
 # Convex directory submission
 
-Status: prepared, not submitted. Stable npm version 1.0.1 is published. Complete the Estulio production migration first.
+Status: prepared, not submitted. Stable npm version 1.0.1 is published. Production migration and deployment are verified. Convex preflight passed all eight critical and six suggested checks. The authenticated form is complete except for contact information.
 
 - Name: Convex Credits
 - Maintainer: CLIPIN
@@ -14,7 +14,7 @@ Status: prepared, not submitted. Stable npm version 1.0.1 is published. Complete
 
 ## Short description
 
-Transactional credits for Convex background jobs. Reserve, complete, release, refund, and reconcile with durable operation keys.
+Transactional credits for Convex. Grant, reserve, complete, release, refund, and transfer credits with safe retries and auditable history.
 
 ## Description
 

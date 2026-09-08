@@ -41,32 +41,16 @@ Move all writers for each migrated account together. Preserve legacy references 
 Reconcile source balances, imported movements, and pending charges before switching readers.
 Retain source records for rollback and audit. Do not blindly dual-write across non-atomic boundaries.
 
-## Evidence
+## Verification and release status
 
-2026-09-08: inspected ../convex-teams and ../convex-chat. Teams is the complete local reference.
-GitHub authentication is available. npm whoami returned E401; renew npm authentication only when the release is ready.
+Verified on 2026-09-08:
 
-2026-09-08 verification:
-- 18 tests pass: component lifecycle, generated 100-job sequences, resumable imports, scheduled example, and host rollback.
-- Real local Convex passes 8 simultaneous identical grants, 10 competing reservations, retries, completion/release race, and ledger reconciliation.
-- Live testing found the native paginate limitation; replaced it with the documented convex-helpers paginator.
-- convex-helpers is pinned to 0.1.120 to retain Convex 1.42.1 compatibility.
-- All workspace types, lint, tests, builds, package contents, and installed-tarball host tests pass.
-- Website checked at desktop and mobile sizes.
-- GitHub and Vercel authentication available. npm package name is not currently published.
-
-2026-09-08 publication preparation:
-- Public repo created: https://github.com/clipinfit/convex-credits (initial commit 7a272cf).
-- GitHub CI passed: run 34234538145.
-- Docs deployed and browser-verified: https://convex-credits.vercel.app.
-- Private Estulio snapshot rehearsal passed for every existing account, including history, explicit opening balances, retries, and final ledger sums. Source data remains outside this repository.
-- npm web login requested; waiting for account authentication before stable publication.
-
-2026-09-08 follow-up verification:
-- Installed consumer checks pass on Convex 1.42.1 and 1.45.0. CI now checks both versions.
-- The example rejects changed outcomes that reuse a request ID.
-- Package-install checks bypass Turbo caching because they read the example package and resolve registry dependencies.
-
-2026-09-08: Published @clipin/convex-credits@1.0.0 with npm user denis. Verified public access, tarball availability, and registry version. Estulio installation now uses the exact published version.
-
-2026-09-08: Published and verified 1.0.1. Removed the test helper type dependency on convex-test and added an installed npm workspace regression check. Both Convex 1.42.1 and 1.45.0 pass. Estulio now installs exact registry version 1.0.1; backend/app type checks, the app production build, and 18 integration tests pass. Production reconciliation remains 318 users / 14,235 credits with no pending charges or active study generations. Development migration verified one account and correctly rejected a pre-existing inconsistent history on another account; production histories all reconcile. Production deployment and directory submission remain in progress.
+- Published stable `@clipin/convex-credits@1.0.1` from the public repository.
+- Component lifecycle, generated operation sequences, resumable imports, scheduled jobs, and host rollback tests pass.
+- Real local Convex checks cover simultaneous grants, competing reservations, retries, completion/release races, and ledger reconciliation.
+- Installed tarball checks pass locally with Convex 1.42.1 and 1.45.0, including a nested npm workspace. CI uses npm 11.14.1 to avoid an installer crash in the Node 22 bundled version.
+- Type checks, lint, package contents, and website builds pass. The live website shows version 1.0.1.
+- Estulio production uses the published package. All production accounts migrated with source history preserved and no balance drift. Backend and frontend deployments passed.
+- The development migration correctly rejected an account with pre-existing inconsistent history. No synthetic corrections were applied.
+- Production snapshots and detailed reconciliation evidence remain outside this public repository.
+- Convex directory preflight passed all eight critical and six suggested checks. Submission is prepared; contact information is pending.

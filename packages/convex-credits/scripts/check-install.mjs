@@ -2,6 +2,8 @@ import assert from "node:assert/strict";
 import { execFileSync } from "node:child_process";
 import {
   cpSync,
+  existsSync,
+  mkdirSync,
   mkdtempSync,
   readFileSync,
   rmSync,
@@ -89,8 +91,54 @@ try {
   ]);
   const tests = run("bunx", ["--no-install", "vitest", "run"]);
   assert.match(tests, /2 passed/);
+  // Keep the component at the root and convex-test in a nested workspace.
+  // This is the layout that exposed the test helper's unnecessary type dependency.
+  const backend = join(temporary, "packages/backend");
+  mkdirSync(backend, { recursive: true });
+  cpSync(join(temporary, "convex"), join(backend, "convex"), {
+    recursive: true,
+  });
+  cpSync(
+    join(temporary, "vitest.config.ts"),
+    join(backend, "vitest.config.ts"),
+  );
+  const manifest = JSON.parse(
+    readFileSync(join(temporary, "package.json"), "utf8"),
+  );
+  writeFileSync(
+    join(backend, "package.json"),
+    JSON.stringify({
+      name: "credits-nested-test-consumer",
+      private: true,
+      type: "module",
+      dependencies: { convex: convexVersion },
+      devDependencies: manifest.devDependencies,
+    }),
+  );
+  manifest.workspaces = ["packages/*"];
+  manifest.devDependencies = { vite: "8.2.1", typescript: "5.9.3" };
+  writeFileSync(join(temporary, "package.json"), JSON.stringify(manifest));
+  rmSync(join(temporary, "node_modules"), { recursive: true, force: true });
+  run("npm", [
+    "install",
+    "--install-strategy=nested",
+    "--ignore-scripts",
+    "--no-audit",
+    "--no-fund",
+  ]);
+  assert.equal(existsSync(join(temporary, "node_modules/convex-test")), false);
+  assert.equal(existsSync(join(backend, "node_modules/convex-test")), true);
+  run(
+    "bunx",
+    ["--no-install", "tsc", "--noEmit", "-p", "convex/tsconfig.json"],
+    backend,
+  );
+  assert.match(
+    run("bunx", ["--no-install", "vitest", "run"], backend),
+    /2 passed/,
+  );
   console.log(
-    `Installed tarball passed with Convex ${convexVersion}: runtime exports, host types, packaged test helper, scheduled completion, and host rollback.`,
+    `Installed tarball passed with Convex ${convexVersion}: runtime exports, host types, packaged test helper, nested npm workspace, scheduled completion, and host rollback.`,
   );
 } catch (error) {
   if (error.stdout) process.stderr.write(error.stdout);

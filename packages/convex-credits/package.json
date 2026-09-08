@@ -1,6 +1,6 @@
 {
   "name": "@clipin/convex-credits",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Transactional credits for Convex background jobs: reserve, complete, release, refund, and reconcile.",
   "license": "Apache-2.0",
   "homepage": "https://convex-credits.vercel.app",
@@ -52,7 +52,8 @@
     "pack:check": "node scripts/check-package.mjs && node scripts/check-install.mjs"
   },
   "peerDependencies": {
-    "convex": ">=1.42.1 <2.0.0"
+    "convex": ">=1.42.1 <2.0.0",
+    "vite": ">=5.0.0 <9.0.0"
   },
   "devDependencies": {
     "@biomejs/biome": "2.5.1",
@@ -84,5 +85,10 @@
   },
   "dependencies": {
     "convex-helpers": "0.1.120"
+  },
+  "peerDependenciesMeta": {
+    "vite": {
+      "optional": true
+    }
   }
 }

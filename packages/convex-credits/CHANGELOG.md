@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.0.1 — 2026-09-08
+
+- Remove the test helper’s type dependency on `convex-test` so nested npm workspaces can use it. Declare Vite as an optional peer. Verify the installed package in a nested npm workspace.
+
 ## 1.0.0 — 2026-09-08
 
 - Initial account and charge lifecycle.
